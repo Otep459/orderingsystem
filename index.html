@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Ordering Subsystem</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+  <div class="nav-left">
+    <h2>🍔 Ordering System</h2>
+  </div>
+
+  <div class="nav-center">
+    <button onclick="filterCategory('All')">All</button>
+    <button onclick="filterCategory('Food')">Food</button>
+    <button onclick="filterCategory('Drinks')">Drinks</button>
+    <button onclick="filterCategory('Dessert')">Dessert</button>
+
+    <button onclick="window.location.href='order.html'">
+      View Order History
+    </button>
+  </div>
+
+  <div class="nav-right">
+    <div class="cart-icon" onclick="openCart()">
+      🛒 <span id="cart-count">0</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= PRODUCTS ================= -->
+
+<div class="products-container" id="products"></div>
+
+<!-- ================= CART MODAL ================= -->
+
+<div id="cart-modal" class="modal">
+  <div class="modal-content">
+
+    <span class="close" onclick="closeCart()">×</span>
+
+    <h2>Your Cart</h2>
+
+    <div id="cart"></div>
+    <h3 id="total"></h3>
+
+    <button id="checkoutBtn" onclick="checkout()">
+      Checkout
+    </button>
+
+  </div>
+</div>
+
+<!-- ================= SUCCESS MODAL ================= -->
+
+<div id="checkout-success" class="success-modal">
+
+  <div class="success-content">
+
+    <h2>✅ Order Successfully Placed!</h2>
+    <p>Your order has been saved successfully.</p>
+
+    <button onclick="goToOrders()">
+      📦 View Order History
+    </button>
+
+    <button onclick="closeSuccess()">
+      Close
+    </button>
+
+  </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
