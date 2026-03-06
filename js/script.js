@@ -193,12 +193,19 @@ function goToOrders() {
   window.location.href = "order.html";
 }
 
+
+function load(){
+  setInterval(1000);
+  window.location.reload();
+}
+
 // ================= CLOSE SUCCESS MODAL =================
 function closeSuccess() {
   const modal = document.getElementById("checkout-success");
   if (modal) {
     modal.style.display = "none";
   }
+
 }
 
 const particlesContainer = document.querySelector(".particles");
@@ -253,3 +260,4 @@ setInterval(() => {
   });
 
 }, 50);
+
