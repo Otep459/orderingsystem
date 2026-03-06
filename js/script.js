@@ -2,27 +2,32 @@ console.log("SCRIPT LOADED ✅");
 
 // ================= PRODUCTS =================
 const products = [
-  { name: "Burger", price: 10, image: "images/burger.jpg", category: "Food" },
-  { name: "Pizza", price: 15, image: "images/pizza.jpg", category: "Food" },
-  { name: "Pasta", price: 8, image: "images/pasta.jpg", category: "Food" },
+  { id: 1, name: "Burger", price: 109, image: "images/burger.jpg", category: "Food" },
+  { id: 2, name: "Pizza", price: 245, image: "images/pizza.jpg", category: "Food" },
+  { id: 3, name: "Pasta", price: 119, image: "images/pasta.jpg", category: "Food" },
 
-  { name: "Steak", price: 12, image: "images/steak.jpg", category: "Food" },
-  { name: "Onion Rings", price: 5, image: "images/onion-rings.jpg", category: "Food" },
-  { name: "Fries", price: 5, image: "images/frenchfries.jpg", category: "Food" },
+  { id: 4, name: "Steak", price: 129, image: "images/steak.jpg", category: "Food" },
+  { id: 5, name: "Onion Rings", price: 59, image: "images/onion-rings.jpg", category: "Food" },
+  { id: 6, name: "Fries", price: 59, image: "images/frenchfries.jpg", category: "Food" },
 
-  { name: "Coke", price: 3, image: "images/Coke.webp", category: "Drinks" },
-  { name: "Water", price: 2, image: "images/water.png", category: "Drinks" },
-  { name: "Coffee", price: 3, image: "images/coffee.jpg", category: "Drinks" },
-  { name: "Milktea", price: 2, image: "images/milktea.jpg", category: "Drinks" },
-  { name: "Bubble Tea", price: 3, image: "images/bubble-tea.jpg", category: "Drinks" },
+  { id: 7, name: "Coke", price: 30, image: "images/Coke.webp", category: "Drinks" },
+  { id: 8, name: "Water", price: 20, image: "images/water.png", category: "Drinks" },
+  { id: 9, name: "Coffee", price: 69, image: "images/coffee.jpg", category: "Drinks" },
+  { id: 10, name: "Milktea", price: 79, image: "images/milktea.jpg", category: "Drinks" },
+  { id: 11, name: "Bubble Tea", price: 79, image: "images/bubble-tea.jpg", category: "Drinks" },
 
-  { name: "Cake", price: 6, image: "images/cake.jpg", category: "Dessert" },
-  { name: "Ice Cream", price: 4, image: "images/icecream.jpg", category: "Dessert" },
-  { name: "Maja Blanca", price: 6, image: "images/maja.jpg", category: "Dessert" },
-  { name: "Lecheflan", price: 4, image: "images/lecheflan.jpg", category: "Dessert" },
-  { name: "Halo-Halo", price: 6, image: "images/halo-halo.jpg", category: "Dessert" },
-  { name: "Graham", price: 4, image: "images/graham.jpg", category: "Dessert" }
+  { id: 12, name: "Cake", price: 499, image: "images/cake.jpg", category: "Dessert" },
+  { id: 13, name: "Ice Cream", price: 99, image: "images/icecream.jpg", category: "Dessert" },
+  { id: 14, name: "Maja Blanca", price: 129, image: "images/maja.jpg", category: "Dessert" },
+  { id: 15, name: "Lecheflan", price: 129, image: "images/lecheflan.jpg", category: "Dessert" },
+  { id: 16, name: "Halo-Halo", price: 79, image: "images/halo-halo.jpg", category: "Dessert" },
+  { id: 17, name: "Graham", price: 119, image: "images/graham.jpg", category: "Dessert" }
 ];
+
+// ================= ORDER ID COUNTER =================
+let lastOrderId = localStorage.getItem("lastOrderId")
+  ? Number(localStorage.getItem("lastOrderId"))
+  : 0;
 
 // ================= FILTER PRODUCTS =================
 function filterCategory(category) {
@@ -43,7 +48,7 @@ function filterCategory(category) {
       <div class="card">
         <img src="${product.image}">
         <h3>${product.name}</h3>
-        <p>$${product.price}</p>
+        <p> ₱${product.price}</p>
         <button onclick="addToCart(${product.id})">
           Add To Cart
         </button>
@@ -62,11 +67,8 @@ function addToCart(id) {
 
   const existing = cart.find(item => item.id === id);
 
-  if (existing) {
-    existing.quantity++;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
+  if (existing) existing.quantity++;
+  else cart.push({ ...product, quantity: 1 });
 
   saveCart();
   renderCart();
@@ -96,7 +98,7 @@ function renderCart() {
 
     cartDiv.innerHTML += `
       <p>
-        ${item.name} - $${item.price}
+        ${item.name} - ₱${item.price}
         <button onclick="decrease(${item.id})">-</button>
         ${item.quantity}
         <button onclick="increase(${item.id})">+</button>
@@ -105,7 +107,7 @@ function renderCart() {
     `;
   });
 
-  totalDiv.innerHTML = "Total: $" + total;
+  totalDiv.innerHTML = "Total: ₱" + total;
 
   const checkoutBtn = document.getElementById("checkoutBtn");
   checkoutBtn?.toggleAttribute("disabled", cart.length === 0);
@@ -152,8 +154,11 @@ function checkout() {
   const total = cart.reduce((sum, item) =>
     sum + item.price * item.quantity, 0);
 
+  lastOrderId++;
+  localStorage.setItem("lastOrderId", lastOrderId);
+
   const newOrder = {
-    id: Date.now(),
+    id: lastOrderId,
     items: cart,
     total: total,
     date: new Date().toLocaleString()
@@ -172,92 +177,132 @@ function checkout() {
   document.getElementById("checkout-success").style.display = "flex";
 }
 
-// ================= LOAD PAGE =================
+// ================= RESET ORDER ID =================
+function resetOrderId() {
+  localStorage.setItem("lastOrderId", 0);
+  lastOrderId = 0;
+  alert("Order ID Reset ✅");
+}
+
+// ================= PAGE LOAD =================
 window.addEventListener("DOMContentLoaded", () => {
   filterCategory("All");
   renderCart();
   updateBadge();
+  initSnowTheme();
 });
 
+// ================= MODALS =================
 function openCart() {
-  const modal = document.getElementById("cart-modal");
-  if (modal) modal.style.display = "block";
+  document.getElementById("cart-modal")?.style.setProperty("display", "block");
 }
 
 function closeCart() {
-  const modal = document.getElementById("cart-modal");
-  if (modal) modal.style.display = "none";
+  document.getElementById("cart-modal")?.style.setProperty("display", "none");
 }
-// ================= GO TO ORDER PAGE =================
+
 function goToOrders() {
   window.location.href = "order.html";
 }
 
-
-function load(){
-  setInterval(1000);
-  window.location.reload();
-}
-
-// ================= CLOSE SUCCESS MODAL =================
 function closeSuccess() {
-  const modal = document.getElementById("checkout-success");
-  if (modal) {
-    modal.style.display = "none";
-  }
-
+  document.getElementById("checkout-success")?.style.setProperty("display", "none");
 }
 
-const particlesContainer = document.querySelector(".particles");
+// =====================================================
+// 🌨️ COLOR SNOW THEME SYSTEM (INTEGRATED)
+// =====================================================
 
-let mouseX = 0;
-let mouseY = 0;
+// =====================================================
+// 🌈 AUTO RAINBOW + BIG SNOW THEME SYSTEM
+// =====================================================
 
-/* Track Mouse Movement */
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
+const snowContainer = document.createElement("div");
+snowContainer.classList.add("snow-container");
+document.body.appendChild(snowContainer);
 
-/* Create Particles */
-for(let i = 0; i < 80; i++){
+// 🎨 Theme Colors
+const themeColors = [
+  "#00ffff",
+  "#ff00ff",
+  "#00ff88",
+  "#ff4d4d",
+  "#ffd700",
+  "#4da6ff"
+];
 
-  const particle = document.createElement("span");
+let currentThemeColor = themeColors[0];
+let rainbowInterval = null;
 
-  particle.style.left = Math.random() * 100 + "vw";
-  particle.style.top = Math.random() * 100 + "vh";
+// ================= APPLY THEME =================
+function applyThemeColor(color) {
 
-  particle.style.animationDuration = (10 + Math.random() * 20) + "s";
-  particle.style.animationDelay = Math.random() * 10 + "s";
+  currentThemeColor = color;
 
-  particlesContainer.appendChild(particle);
+  document.documentElement.style.setProperty("--theme-color", color);
+  document.documentElement.style.setProperty("--hover-color", color);
+
+  localStorage.setItem("themeColor", color);
+
+  startRainbowMode(color);
 }
 
-/* Mouse Attraction Effect */
-setInterval(() => {
+// =====================================================
+// 🌈 AUTO RAINBOW MODE (Smooth Transition)
+// =====================================================
+function startRainbowMode(baseColor) {
 
-  const particles = document.querySelectorAll(".particles span");
+  if (rainbowInterval) clearInterval(rainbowInterval);
 
-  particles.forEach(p => {
+  let hue = 0;
 
-    let rect = p.getBoundingClientRect();
+  rainbowInterval = setInterval(() => {
 
-    let dx = mouseX - (rect.left + rect.width / 2);
-    let dy = mouseY - (rect.top + rect.height / 2);
+    hue += 2;
 
-    let dist = Math.sqrt(dx * dx + dy * dy);
+    const rainbowColor = `hsl(${hue}, 100%, 60%)`;
 
-    if(dist < 150){
+    document.documentElement.style.setProperty("--theme-color", rainbowColor);
+    document.documentElement.style.setProperty("--hover-color", rainbowColor);
 
-      p.style.transform = `translate(${dx * 0.05}px, ${dy * 0.05}px)`;
-      p.style.opacity = 1;
+  }, 50);
+}
 
-    } else {
+// =====================================================
+// ❄️ CREATE ONE BIG SNOW PARTICLE
+// =====================================================
+function createBigSnow() {
 
-      p.style.transform = "translate(0,0)";
-    }
+  snowContainer.innerHTML = "";
 
+  const snow = document.createElement("div");
+  snow.classList.add("big-snow");
+
+  const randomColor =
+    themeColors[Math.floor(Math.random() * themeColors.length)];
+
+  snow.style.background = randomColor;
+  snow.style.left = "50%";
+  snow.style.top = "40%";
+
+  // ✅ Click Snow → Change Theme
+  snow.addEventListener("click", () => {
+    applyThemeColor(randomColor);
+    snow.remove();
   });
 
-}, 50);
+  snowContainer.appendChild(snow);
+}
 
+
+
+// Load saved theme on refresh
+window.addEventListener("DOMContentLoaded", () => {
+
+  const savedColor = localStorage.getItem("themeColor");
+
+  if (savedColor) {
+    applyThemeColor(savedColor);
+  }
+
+});

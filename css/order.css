@@ -1,4 +1,6 @@
-/* ================= GLOBAL ================= */
+/* ===================================================== */
+/* ================= GLOBAL ============================= */
+/* ===================================================== */
 
 body{
     font-family: "Poppins", sans-serif;
@@ -7,54 +9,32 @@ body{
     color:white;
 }
 
-/* ================= NAVBAR ================= */
+/* ===================================================== */
+/* ================= NAVBAR ============================= */
+/* ===================================================== */
 
 .history-navbar{
 
   display:flex;
   justify-content:space-between;
   align-items:center;
+
   padding:15px 30px;
+
   backdrop-filter: blur(15px);
   background: rgba(255,255,255,0.1);
+
   border-bottom:1px solid rgba(255,255,255,0.2);
-  color:white;
 }
 
 .history-left h2{
-
   margin:0;
-  color:#ffffff;
   font-size:30px;
 }
 
-/* ================= NAV BUTTON ================= */
-
-.history-right button{
-
-  background:#d8332d;
-  color:white;
-
-  border:none;
-
-  padding:8px 18px;
-
-  border-radius:20px;
-
-  cursor:pointer;
-
-  transition:0.3s;
-
-  box-shadow:0 5px 10px rgba(0,0,0,0.15);
-}
-
-.history-right button:hover{
-
-  transform:scale(1.05);
-  background:#b82823;
-}
-
-/* ================= FILTER SECTION ================= */
+/* ===================================================== */
+/* ================= FILTER SECTION ====================== */
+/* ===================================================== */
 
 .filters{
 
@@ -67,372 +47,269 @@ body{
   margin:20px auto;
   padding:15px;
 
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.15);
   backdrop-filter: blur(15px);
 
   border-radius:25px;
-  border:1px solid rgba(255,255,255,0.4);
+  border:1px solid rgba(255,255,255,0.3);
 
   width:fit-content;
 }
 
-/* ================= SEARCH + DATE INPUT (UPGRADED) ================= */
+/* ===================================================== */
+/* ================= INPUTS ============================= */
+/* ===================================================== */
 
 .filters input{
 
   padding:10px 16px;
 
-  border-radius:20px;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,0.25);
 
-  border:1px solid rgba(255,255,255,0.4);
-
-  outline:none;
-
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.12);
 
   backdrop-filter: blur(10px);
 
-  color:#222;
+  color:white;
+  outline:none;
 
-  font-size:14px;
+  transition:0.3s;
 
-  transition:all 0.3s ease;
-
-  box-shadow:0 6px 12px rgba(0,0,0,0.1);
-
-  position:relative;
+  box-shadow:0 6px 12px rgba(0,0,0,0.15);
 }
-
-/* Placeholder */
 
 .filters input::placeholder{
-  color:#444;
+  color:rgba(255,255,255,0.6);
 }
 
-/* ================= INPUT HOVER EFFECT ================= */
-
+/* Hover */
 .filters input:hover{
-
-  background: rgba(255,255,255,0.4);
-
-  border:1px solid #00c6ff;
-
-  box-shadow:
-    0 0 10px rgba(0,198,255,0.5),
-    0 0 20px rgba(0,198,255,0.3);
-
+  border:1px solid var(--hover-color);
+  box-shadow:0 0 10px var(--hover-color);
   transform:translateY(-2px);
 }
 
-/* ================= INPUT FOCUS EFFECT ================= */
-
+/* Focus */
 .filters input:focus{
-
-  background: rgba(255,255,255,0.5);
-
-  border:1px solid #ff00ff;
-
+  border:1px solid var(--hover-color);
   box-shadow:
-    0 0 12px rgba(255,0,255,0.6),
-    0 0 25px rgba(255,0,255,0.4);
-
+    0 0 15px var(--hover-color),
+    0 0 25px rgba(255,255,255,0.3);
   transform:scale(1.05);
 }
-
-/* Date Picker */
 
 .filters input[type="date"]{
   cursor:pointer;
 }
 
-/* ================= ORDERS GRID ================= */
+/* ===================================================== */
+/* ================= ORDERS GRID ======================== */
+/* ===================================================== */
 
 #orders{
 
   display:grid;
-
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
   gap:20px;
 
   padding:25px;
 }
 
-/* ================= ORDER CARD ================= */
+/* ===================================================== */
+/* ================= ORDER CARD ========================= */
+/* ===================================================== */
 
 .order-card{
 
   backdrop-filter: blur(18px);
 
-  background: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.25);
 
   border:1px solid rgba(255,255,255,0.4);
-
   border-radius:18px;
 
-  padding:18px;
+  padding:20px;
 
   box-shadow:0 10px 20px rgba(0,0,0,0.15);
 
-  transition:0.25s;
+  transition:0.3s;
 }
 
 .order-card:hover{
-
   transform:translateY(-6px);
-
-  box-shadow:0 15px 25px rgba(0,0,0,0.2);
+  box-shadow:0 15px 30px rgba(0,0,0,0.25);
 }
 
-/* ================= TABLE ================= */
+.order-card h4{
+  color:white;
+}
+
+/* ===================================================== */
+/* ================= TABLE ============================== */
+/* ===================================================== */
 
 table{
-
+  width:100%;
   border-collapse:collapse;
   margin-top:10px;
   background:white;
 }
 
 table th{
-
-  background:#747474;
-  color:#ffffff;
+  background:#555;
+  color:white;
+  text-transform:uppercase;
 }
 
-table td, table th{
+table th,
+table td{
 
   border:1px solid #ddd;
   padding:6px;
   text-align:center;
+
+  color:#0f2027;
+  font-weight:bold;
 }
 
-/* ================= TOTAL ================= */
+/* ===================================================== */
+/* ================= BUTTON RESET ======================= */
+/* ===================================================== */
 
-.order-card h4{
-
-  color:#ffffff;
-}
-
-/* ================= DELETE BUTTON ================= */
-
-.order-card button{
-
-  margin-top:12px;
-
-  background:#d8332d;
-
-  color:white;
-
-  border:none;
-
-  padding:7px 14px;
-
-  border-radius:8px;
-
+button{
   cursor:pointer;
-
-  transition:0.25s;
+  font-weight:600;
 }
 
-/* ================= TOAST ================= */
-
-.toast{
-
-  position:fixed;
-
-  top:20px;
-  right:20px;
-
-  background:rgba(0,0,0,0.8);
-
-  color:white;
-
-  padding:12px 18px;
-
-  border-radius:10px;
-
-  backdrop-filter: blur(10px);
-
-  opacity:0;
-
-  transform:translateY(-20px);
-
-  transition:0.3s;
-
-  z-index:9999;
-}
-
-.toast.show{
-
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* ================= BACK BUTTON ================= */
-
-.back-btn{
-
-  background:#fcbf49;
-
-  color:#d8332d;
-
-  border:none;
-
-  padding:10px 20px;
-
-  border-radius:20px;
-
-  cursor:pointer;
-
-  margin:20px;
-
-  transition:0.3s;
-}
-
-.back-btn:hover{
-
-  background:#e7a51a;
-  transform:scale(1.05);
-}
-
-/* ================= GLASS BUTTON STYLE (IMPROVED) ================= */
+/* ===================================================== */
+/* ================= GLASS BUTTON STYLE ================= */
+/* ===================================================== */
 
 button,
-.nav-center button,
 .history-right button,
 .order-card button,
 .back-btn,
-.categories button {
+.categories button{
 
-  position: relative;
+  position:relative;
 
   background: rgba(255,255,255,0.12) !important;
-
-  border: 1px solid rgba(255,255,255,0.25) !important;
+  border:1px solid rgba(255,255,255,0.25) !important;
 
   backdrop-filter: blur(12px);
 
-  color: white !important;
+  color:white !important;
 
-  padding: 10px 18px;
+  padding:10px 18px;
+  border-radius:30px;
 
-  border-radius: 30px;
+  transition:0.3s;
+  overflow:hidden;
 
-  cursor: pointer;
-
-  font-weight: 600;
-
-  transition: all 0.3s ease;
-
-  overflow: hidden;
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* ================= GLASS RAINBOW LIGHT EFFECT ================= */
+/* Hover */
 
-button::before {
+button:hover,
+.history-right button:hover,
+.order-card button:hover,
+.back-btn:hover,
+.categories button:hover{
 
-  content: "";
+  transform:translateY(-4px) scale(1.06);
 
-  position: absolute;
+  border:1px solid var(--hover-color) !important;
 
-  top: 0;
+  box-shadow:
+    0 0 15px var(--hover-color),
+    0 0 30px rgba(255,255,255,0.3);
+}
 
-  left: -100%;
+/* Shine Effect */
 
-  width: 100%;
-  height: 100%;
+button::before{
 
-  background: linear-gradient(
+  content:"";
+  position:absolute;
+
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+
+  background:linear-gradient(
     120deg,
     transparent,
     rgba(255,255,255,0.5),
     transparent
   );
 
-  transition: all 0.6s ease;
+  transition:0.6s;
 }
 
-/* ================= BUTTON HOVER EFFECT ================= */
-
-button:hover,
-.nav-center button:hover,
-.history-right button:hover,
-.order-card button:hover,
-.back-btn:hover,
-.categories button:hover {
-
-  background: rgba(255,255,255,0.35) !important;
-
-  transform: translateY(-4px) scale(1.06);
-
-  border: 1px solid rgba(255,255,255,0.8) !important;
-
-  box-shadow:
-    0 0 15px rgba(0, 200, 255, 0.7),
-    0 0 30px rgba(255, 0, 255, 0.5);
+button:hover::before{
+  left:100%;
 }
 
-/* Animate light sweep */
+/* ===================================================== */
+/* ================= DELETE BUTTON ====================== */
+/* ===================================================== */
 
-button:hover::before {
-
-  left: 100%;
+.order-card button{
+  margin-top:12px;
 }
 
-/* ================= FLOATING PARTICLE BACKGROUND ================= */
+/* ===================================================== */
+/* ================= TOAST ============================== */
+/* ===================================================== */
 
-/* ================= FLOATING + MOUSE REACTIVE PARTICLES ================= */
-
-.particles{
+.toast{
 
   position:fixed;
-  top:0;
-  left:0;
+  top:20px;
+  right:20px;
 
-  width:100%;
-  height:100%;
+  background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(10px);
 
-  pointer-events:none;
-  z-index:-1;
+  padding:12px 18px;
+  border-radius:10px;
 
-  overflow:hidden;
+  opacity:0;
+  transform:translateY(-20px);
+  transition:0.3s;
+
+  z-index:9999;
 }
 
-/* Particle */
-
-.particles span{
-
-  position:absolute;
-
-  width:4px;
-  height:4px;
-
-  background:rgba(0,255,255,0.8);
-
-  border-radius:50%;
-
-  box-shadow:0 0 8px rgba(0,255,255,0.8);
-
-  animation: floatUp 20s linear infinite;
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* Floating animation */
+/* ===================================================== */
+/* ================= BACK BUTTON ======================== */
+/* ===================================================== */
 
-@keyframes floatUp{
+.back-btn{
+  margin:20px;
+}
 
-  0%{
-    transform: translateY(100vh) translateX(0);
+/* ===================================================== */
+/* ================= ANIMATION ========================== */
+/* ===================================================== */
+
+@keyframes popup{
+
+  from{
+    transform:scale(0.7);
     opacity:0;
   }
 
-  20%{
+  to{
+    transform:scale(1);
     opacity:1;
-  }
-
-  100%{
-    transform: translateY(-20vh) translateX(40px);
-    opacity:0;
   }
 }

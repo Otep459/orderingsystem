@@ -5,7 +5,6 @@ let allOrders = [];
 
 function loadOrders() {
   allOrders = JSON.parse(localStorage.getItem("orders")) || [];
-  console.log("Orders from localStorage:", allOrders);
   displayOrders(allOrders);
 }
 
@@ -35,9 +34,9 @@ function displayOrders(orders) {
       itemsHTML += `
         <tr>
           <td>${item.name}</td>
-          <td>$${item.price}</td>
+          <td>₱${item.price}</td>
           <td>${item.quantity}</td>
-          <td>$${subtotal}</td>
+          <td>₱${subtotal}</td>
         </tr>
       `;
     });
@@ -47,7 +46,7 @@ function displayOrders(orders) {
         <h3>🆔 Order #${order.id}</h3>
         <p><strong>Date:</strong> ${order.date}</p>
 
-        <table border="1" width="100%" cellpadding="6">
+        <table>
           <tr>
             <th>Item</th>
             <th>Price</th>
@@ -57,11 +56,10 @@ function displayOrders(orders) {
           ${itemsHTML}
         </table>
 
-        <h4>💰 Total: $${grandTotal.toFixed(2)}</h4>
+        <h4>💰 Total: ₱${grandTotal.toFixed(2)}</h4>
 
-        <button onclick="deleteOrder(${order.id})"
-          style="margin-top:10px;background:red;color:white;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;">
-           Remove Order
+        <button class="delete-btn" onclick="deleteOrder(${order.id})">
+          🗑 Remove Order
         </button>
       </div>
     `;
@@ -77,20 +75,15 @@ function deleteOrder(id) {
 
   localStorage.setItem("orders", JSON.stringify(orders));
 
-  showToast("Order deleted successfully 🗑️", "success");
+  showToast("Order deleted successfully 🗑️");
   loadOrders();
 }
 
-// ================= SEARCH + FILTER =================
+// ================= FILTER =================
 function filterOrders() {
 
-  const searchValue = document
-    .getElementById("searchInput")
-    ?.value.toLowerCase() || "";
-
-  const dateValue = document
-    .getElementById("dateFilter")
-    ?.value || "";
+  const searchValue = document.getElementById("searchInput")?.value.toLowerCase() || "";
+  const dateValue = document.getElementById("dateFilter")?.value || "";
 
   let filtered = allOrders;
 
@@ -111,10 +104,10 @@ function filterOrders() {
 }
 
 // ================= TOAST =================
-function showToast(message, type = "success") {
+function showToast(message) {
 
   const toast = document.createElement("div");
-  toast.className = "toast " + type;
+  toast.className = "toast";
   toast.innerText = message;
 
   document.body.appendChild(toast);
@@ -127,58 +120,108 @@ function showToast(message, type = "success") {
   }, 2500);
 }
 
-// ================= LOAD PAGE =================
-window.addEventListener("DOMContentLoaded", loadOrders);
+// ================= PAGE LOAD =================
+window.addEventListener("DOMContentLoaded", () => {
 
-const particlesContainer = document.querySelector(".particles");
+  loadOrders();
+  initThemeFromStorage();
+  initSnowTheme();
 
-let mouseX = 0;
-let mouseY = 0;
-
-/* Track Mouse Movement */
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
 });
 
-/* Create Particles */
-for(let i = 0; i < 80; i++){
 
-  const particle = document.createElement("span");
+// =====================================================
+// 🌈 THEME SYSTEM (FULL SYNC WITH MAIN SCRIPT)
+// =====================================================
 
-  particle.style.left = Math.random() * 100 + "vw";
-  particle.style.top = Math.random() * 100 + "vh";
+let rainbowInterval = null;
 
-  particle.style.animationDuration = (10 + Math.random() * 20) + "s";
-  particle.style.animationDelay = Math.random() * 10 + "s";
+function initThemeFromStorage() {
 
-  particlesContainer.appendChild(particle);
+  const savedColor = localStorage.getItem("themeColor");
+
+  if (savedColor) {
+    applyThemeColor(savedColor);
+  }
 }
 
-/* Mouse Attraction Effect */
-setInterval(() => {
+// Apply theme
+function applyThemeColor(color) {
 
-  const particles = document.querySelectorAll(".particles span");
+  // Stop old rainbow if running
+  if (rainbowInterval) {
+    clearInterval(rainbowInterval);
+  }
 
-  particles.forEach(p => {
+  document.documentElement.style.setProperty("--theme-color", color);
+  document.documentElement.style.setProperty("--hover-color", color);
 
-    let rect = p.getBoundingClientRect();
+  localStorage.setItem("themeColor", color);
 
-    let dx = mouseX - (rect.left + rect.width / 2);
-    let dy = mouseY - (rect.top + rect.height / 2);
+  // Start rainbow auto mode
+  startRainbowMode();
+}
 
-    let dist = Math.sqrt(dx * dx + dy * dy);
+// Rainbow animation
+function startRainbowMode() {
 
-    if(dist < 150){
+  let hue = 0;
 
-      p.style.transform = `translate(${dx * 0.05}px, ${dy * 0.05}px)`;
-      p.style.opacity = 1;
+  rainbowInterval = setInterval(() => {
 
-    } else {
+    hue += 2;
 
-      p.style.transform = "translate(0,0)";
-    }
+    const rainbowColor = `hsl(${hue}, 100%, 60%)`;
+
+    document.documentElement.style.setProperty("--theme-color", rainbowColor);
+    document.documentElement.style.setProperty("--hover-color", rainbowColor);
+
+  }, 50);
+}
+
+
+// =====================================================
+// ❄ BIG SNOW THEME SYSTEM
+// =====================================================
+
+const snowContainer = document.createElement("div");
+snowContainer.classList.add("snow-container");
+document.body.appendChild(snowContainer);
+
+const themeColors = [
+  "#00ffff",
+  "#ff00ff",
+  "#00ff88",
+  "#ff4d4d",
+  "#ffd700",
+  "#4da6ff"
+];
+
+function initSnowTheme() {
+  createBigSnow();
+}
+
+// Create one big snow
+function createBigSnow() {
+
+  snowContainer.innerHTML = "";
+
+  const snow = document.createElement("div");
+  snow.classList.add("big-snow");
+
+  const randomColor =
+    themeColors[Math.floor(Math.random() * themeColors.length)];
+
+  snow.style.background = randomColor;
+  snow.style.left = "50%";
+  snow.style.top = "40%";
+
+  snow.addEventListener("click", () => {
+
+    applyThemeColor(randomColor);
+    snow.remove();
 
   });
 
-}, 50);
+  snowContainer.appendChild(snow);
+}
