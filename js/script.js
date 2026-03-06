@@ -192,3 +192,11 @@ function closeCart() {
 function goToOrders() {
   window.location.href = "order.html";
 }
+
+// ================= CLOSE SUCCESS MODAL =================
+function closeSuccess() {
+  const modal = document.getElementById("checkout-success");
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
