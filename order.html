@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Order History</title>
+
 <link rel="stylesheet" href="css/order.css">
+
 </head>
+
 <body>
+<div class="particles"></div>
+<!-- ================= NAVBAR ================= -->
 
 <nav class="history-navbar">
-  <div class="history-left">
-    <h2>🐝 Order History</h2> <!-- Jollibee mascot theme -->
-  </div>
 
-  <div class="history-center">
-    <span id="history-username">👤 Guest</span>
+  <div class="history-left">
+    <h2> 🍔Order History</h2>
   </div>
 
   <div class="history-right">
-    <div class="history-cart" onclick="window.location.href='index.html'">
-      🛒 <span>Shop</span>
-    </div>
-
-    <button onclick="logout()">
-      🔓 Logout
+    <button onclick="window.location.href='index.html'" class="back-btn">
+      ⬅ Back to Menu
     </button>
   </div>
+
 </nav>
-<div id="searchinput" style="text-align:center;">
-  <input type="text" id="searchInput"
-    placeholder="🔍 Search by date or order id..."
-    onkeyup="filterOrders()">
-  <br><br>
-  <input type="date" id="dateFilter"
-    onchange="filterOrders()">
+
+<!-- ================= FILTER SECTION ================= -->
+
+<div class="filters">
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 Search Order ID..."
+    onkeyup="filterOrders()"
+  >
+
+  <input
+    type="date"
+    id="dateFilter"
+    onchange="filterOrders()"
+  >
+
 </div>
+
+<!-- ================= ORDERS ================= -->
 
 <div id="orders"></div>
 
-<div style="text-align:center;">
-  <button class="back-btn"
-    onclick="window.location.href='index.html'">
-    ⬅ Back to Shop
-  </button>
-</div>
-
-
 <script src="js/order.js"></script>
+
 </body>
 </html>

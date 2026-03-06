@@ -1,56 +1,440 @@
-body {
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* A more playful font */
-  padding: 0;
-  margin: 0;
-  background: #fff9e6; /* Light background color for a cheerful feel */
+/* ================= GLOBAL ================= */
+
+body{
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    min-height:100vh;
+    color:white;
 }
 
-/* Navbar Enhancements */
-.history-navbar {
-  background: #fcbf49; /* Jollibee's signature yellow */
-  color: #d8332d; /* Bright red for text */
+/* ================= NAVBAR ================= */
+
+.history-navbar{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:15px 30px;
+
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(15px);
+
+  border-bottom:1px solid rgba(255,255,255,0.4);
 }
 
-/* Navbar Title */
-.history-left h2 {
-  font-size: 22px;
-  color: #d8332d; /* Jollibee's iconic red */
+.history-left h2{
+
+  margin:0;
+  color:#ffffff;
+  font-size:24px;
 }
 
-/* Button Styles */
-.history-right button {
-  background: #d8332d; /* Red for logout */
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Slight shadow for depth */
+/* ================= NAV BUTTON ================= */
+
+.history-right button{
+
+  background:#d8332d;
+  color:white;
+
+  border:none;
+
+  padding:8px 18px;
+
+  border-radius:20px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  box-shadow:0 5px 10px rgba(0,0,0,0.15);
 }
 
-/* Order Card */
-.order-card {
-  background: #ffffff; /* Keeping it white for contrast */
-  border-radius: 20px; /* Rounded edges for friendliness */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.history-right button:hover{
+
+  transform:scale(1.05);
+  background:#b82823;
 }
 
-/* Toast Notifications */
-.toast {
-  background: #85c1ae; /* Example for success feedback */
+/* ================= FILTER SECTION ================= */
+
+.filters{
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+
+  margin:20px auto;
+  padding:15px;
+
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(15px);
+
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,0.4);
+
+  width:fit-content;
 }
 
-/* Confirmation Modal */
-.confirm-box {
-  background: #ffffff;
-  border-radius: 10px;
-  border: 2px solid #d8332d; /* Red border for attention */
+/* ================= SEARCH + DATE INPUT (UPGRADED) ================= */
+
+.filters input{
+
+  padding:10px 16px;
+
+  border-radius:20px;
+
+  border:1px solid rgba(255,255,255,0.4);
+
+  outline:none;
+
+  background: rgba(255,255,255,0.25);
+
+  backdrop-filter: blur(10px);
+
+  color:#222;
+
+  font-size:14px;
+
+  transition:all 0.3s ease;
+
+  box-shadow:0 6px 12px rgba(0,0,0,0.1);
+
+  position:relative;
 }
 
-/* Back Button */
-.back-btn {
-  background: #fcbf49; /* Yellow for consistency with the brand */
+/* Placeholder */
+
+.filters input::placeholder{
+  color:#444;
 }
 
-.back-btn:hover {
-  background: #e7a51a; /* Slightly darker yellow on hover */
+/* ================= INPUT HOVER EFFECT ================= */
+
+.filters input:hover{
+
+  background: rgba(255,255,255,0.4);
+
+  border:1px solid #00c6ff;
+
+  box-shadow:
+    0 0 10px rgba(0,198,255,0.5),
+    0 0 20px rgba(0,198,255,0.3);
+
+  transform:translateY(-2px);
+}
+
+/* ================= INPUT FOCUS EFFECT ================= */
+
+.filters input:focus{
+
+  background: rgba(255,255,255,0.5);
+
+  border:1px solid #ff00ff;
+
+  box-shadow:
+    0 0 12px rgba(255,0,255,0.6),
+    0 0 25px rgba(255,0,255,0.4);
+
+  transform:scale(1.05);
+}
+
+/* Date Picker */
+
+.filters input[type="date"]{
+  cursor:pointer;
+}
+
+/* ================= ORDERS GRID ================= */
+
+#orders{
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+  gap:20px;
+
+  padding:25px;
+}
+
+/* ================= ORDER CARD ================= */
+
+.order-card{
+
+  backdrop-filter: blur(18px);
+
+  background: rgba(255,255,255,0.35);
+
+  border:1px solid rgba(255,255,255,0.4);
+
+  border-radius:18px;
+
+  padding:18px;
+
+  box-shadow:0 10px 20px rgba(0,0,0,0.15);
+
+  transition:0.25s;
+}
+
+.order-card:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:0 15px 25px rgba(0,0,0,0.2);
+}
+
+/* ================= TABLE ================= */
+
+table{
+
+  border-collapse:collapse;
+  margin-top:10px;
+  background:white;
+}
+
+table th{
+
+  background:#747474;
+  color:#ffffff;
+}
+
+table td, table th{
+
+  border:1px solid #ddd;
+  padding:6px;
+  text-align:center;
+}
+
+/* ================= TOTAL ================= */
+
+.order-card h4{
+
+  color:#ffffff;
+}
+
+/* ================= DELETE BUTTON ================= */
+
+.order-card button{
+
+  margin-top:12px;
+
+  background:#d8332d;
+
+  color:white;
+
+  border:none;
+
+  padding:7px 14px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  transition:0.25s;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+
+  position:fixed;
+
+  top:20px;
+  right:20px;
+
+  background:rgba(0,0,0,0.8);
+
+  color:white;
+
+  padding:12px 18px;
+
+  border-radius:10px;
+
+  backdrop-filter: blur(10px);
+
+  opacity:0;
+
+  transform:translateY(-20px);
+
+  transition:0.3s;
+
+  z-index:9999;
+}
+
+.toast.show{
+
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= BACK BUTTON ================= */
+
+.back-btn{
+
+  background:#fcbf49;
+
+  color:#d8332d;
+
+  border:none;
+
+  padding:10px 20px;
+
+  border-radius:20px;
+
+  cursor:pointer;
+
+  margin:20px;
+
+  transition:0.3s;
+}
+
+.back-btn:hover{
+
+  background:#e7a51a;
+  transform:scale(1.05);
+}
+
+/* ================= GLASS BUTTON STYLE (IMPROVED) ================= */
+
+button,
+.nav-center button,
+.history-right button,
+.order-card button,
+.back-btn,
+.categories button {
+
+  position: relative;
+
+  background: rgba(255,255,255,0.12) !important;
+
+  border: 1px solid rgba(255,255,255,0.25) !important;
+
+  backdrop-filter: blur(12px);
+
+  color: white !important;
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+
+  overflow: hidden;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ================= GLASS RAINBOW LIGHT EFFECT ================= */
+
+button::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+
+  transition: all 0.6s ease;
+}
+
+/* ================= BUTTON HOVER EFFECT ================= */
+
+button:hover,
+.nav-center button:hover,
+.history-right button:hover,
+.order-card button:hover,
+.back-btn:hover,
+.categories button:hover {
+
+  background: rgba(255,255,255,0.35) !important;
+
+  transform: translateY(-4px) scale(1.06);
+
+  border: 1px solid rgba(255,255,255,0.8) !important;
+
+  box-shadow:
+    0 0 15px rgba(0, 200, 255, 0.7),
+    0 0 30px rgba(255, 0, 255, 0.5);
+}
+
+/* Animate light sweep */
+
+button:hover::before {
+
+  left: 100%;
+}
+
+/* ================= FLOATING PARTICLE BACKGROUND ================= */
+
+/* ================= FLOATING + MOUSE REACTIVE PARTICLES ================= */
+
+.particles{
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  pointer-events:none;
+  z-index:-1;
+
+  overflow:hidden;
+}
+
+/* Particle */
+
+.particles span{
+
+  position:absolute;
+
+  width:4px;
+  height:4px;
+
+  background:rgba(0,255,255,0.8);
+
+  border-radius:50%;
+
+  box-shadow:0 0 8px rgba(0,255,255,0.8);
+
+  animation: floatUp 20s linear infinite;
+}
+
+/* Floating animation */
+
+@keyframes floatUp{
+
+  0%{
+    transform: translateY(100vh) translateX(0);
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  100%{
+    transform: translateY(-20vh) translateX(40px);
+    opacity:0;
+  }
 }

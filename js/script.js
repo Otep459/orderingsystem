@@ -200,3 +200,56 @@ function closeSuccess() {
     modal.style.display = "none";
   }
 }
+
+const particlesContainer = document.querySelector(".particles");
+
+let mouseX = 0;
+let mouseY = 0;
+
+/* Track Mouse Movement */
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+/* Create Particles */
+for(let i = 0; i < 80; i++){
+
+  const particle = document.createElement("span");
+
+  particle.style.left = Math.random() * 100 + "vw";
+  particle.style.top = Math.random() * 100 + "vh";
+
+  particle.style.animationDuration = (10 + Math.random() * 20) + "s";
+  particle.style.animationDelay = Math.random() * 10 + "s";
+
+  particlesContainer.appendChild(particle);
+}
+
+/* Mouse Attraction Effect */
+setInterval(() => {
+
+  const particles = document.querySelectorAll(".particles span");
+
+  particles.forEach(p => {
+
+    let rect = p.getBoundingClientRect();
+
+    let dx = mouseX - (rect.left + rect.width / 2);
+    let dy = mouseY - (rect.top + rect.height / 2);
+
+    let dist = Math.sqrt(dx * dx + dy * dy);
+
+    if(dist < 150){
+
+      p.style.transform = `translate(${dx * 0.05}px, ${dy * 0.05}px)`;
+      p.style.opacity = 1;
+
+    } else {
+
+      p.style.transform = "translate(0,0)";
+    }
+
+  });
+
+}, 50);

@@ -1,239 +1,463 @@
-body {
-  font-family: Arial;
-  padding: 0;
-  margin: 0;
-}
+/* ================= GLOBAL ================= */
 
+body{
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    min-height:100vh;
+    color:white;
+}
 /* ================= NAVBAR ================= */
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #2c3e50;
-  padding: 15px 30px;
-  color: white;
-  flex-wrap: wrap;
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:15px 30px;
+
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.1);
+
+  border-bottom:1px solid rgba(255,255,255,0.2);
+  color:white;
 }
 
-.nav-left h2 {
-  margin: 0;
+.nav-left h2{
+  margin:0;
   font-size: 30px;
-
 }
 
-.nav-center button {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 6px 12px;
-  margin: 5px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 20px;
+/* NAV BUTTONS */
+.nav-center{
+  display:flex;
+  gap:15px;
+  font-size: 40px
+}
+.nav-center button{
+
+  background: rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.3);
+  color:white;
+  padding:8px 14px;
+  border-radius:25px;
+
+  cursor:pointer;
+
+  transition:0.3s;
 }
 
-.nav-center button:hover {
-  background: white;
-  color: #2c3e50;
+.nav-center button:hover{
+
+  background: rgba(255,255,255,0.35);
+  transform:translateY(-2px);
 }
 
-.nav-right {
-  font-size: 20px;
-  cursor: pointer;
+/* ================= CART ================= */
+
+.cart-icon{
+
+  font-size:20px;
+  cursor:pointer;
+  background: rgba(255,255,255,0.2);
+  padding:8px 14px;
+  border-radius:20px;
 }
 
-/* Responsive Navbar */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    text-align: center;
-  }
-  .nav-center{
-    margin: 10px 0;
-    
-  }
+#cart-count{
+
+  background:#adadad;
+
+  padding:3px 8px;
+  border-radius:50%;
+  margin-left:4px;
 }
 
-/* ================= PRODUCTS GRID ================= */
+/* ================= PRODUCTS ================= */
 
-.products-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px;
+.products-container{
+
+  padding:30px;
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+  gap:25px;
 }
 
 /* ================= CARD ================= */
 
-.card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  background: white;
-  transition: transform 0.2s ease;
+.card{
+
+  backdrop-filter: blur(20px);
+
+  background: rgba(255,255,255,0.15);
+
+  border:1px solid rgba(255,255,255,0.25);
+
+  border-radius:15px;
+
+  padding:15px;
+
+  text-align:center;
+
+  color:white;
+
+  transition:0.3s;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.card:hover{
+
+  transform: translateY(-8px) scale(1.02);
+
+  box-shadow:0 15px 30px rgba(0,0,0,0.25);
 }
 
-.card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
+.card img{
+
+  width:100%;
+
+  height:160px;
+
+  object-fit:cover;
+
+  border-radius:10px;
+
+  margin-bottom:10px;
 }
 
 /* ================= BUTTON ================= */
 
-button {
-  background: green;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+button{
+
+  background: linear-gradient(135deg,#00c6ff,#0072ff);
+
+  border:none;
+
+  color:white;
+
+  padding:8px 14px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  transition:0.25s;
 }
 
-button:hover {
-  background: darkgreen;
-}
-button:disabled {
-  background: gray;
-  cursor: not-allowed;
-}
+button:hover{
 
-/* ================= CART ICON ================= */
+  transform:scale(1.05);
 
-.cart-icon {
-  font-size: 30px;
-  cursor: pointer;
+  box-shadow:0 6px 12px rgba(0,0,0,0.2);
 }
 
-#cart-count {
-  background: red;
-  color: white;
-  border-radius: 50%;
-  width: 24px;
-  padding: 3px 8px;
-  font-size: 15px;
+button:disabled{
+
+  background:gray;
+
+  cursor:not-allowed;
 }
 
 /* ================= MODAL ================= */
 
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
+.modal{
+
+  display:none;
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  background: rgba(0,0,0,0.45);
+
+  backdrop-filter: blur(6px);
 }
 
-.modal-content {
-  background: white;
-  width: 90%;
-  max-width: 400px;
-  margin: 60px auto;
-  padding: 20px;
-  border-radius: 10px;
+/* MODAL BOX */
+
+.modal-content{
+
+  margin:80px auto;
+
+  width:90%;
+  max-width:420px;
+
+  padding:25px;
+
+  border-radius:15px;
+
+  background: rgba(255,255,255,0.15);
+
+  backdrop-filter: blur(20px);
+
+  border:1px solid rgba(255,255,255,0.3);
+
+  color:white;
+
+  animation: popup .3s ease;
 }
 
-.close {
-  float: right;
-  font-size: 20px;
-  cursor: pointer;
+.close{
+
+  float:right;
+
+  font-size:22px;
+
+  cursor:pointer;
 }
 
-/* ================= CATEGORY BUTTONS ================= */
+/* ================= SUCCESS MODAL ================= */
 
-.categories {
-  margin-bottom: 20px;
-}
+.success-modal{
 
-.categories button {
-  background: #3498db;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  margin-right: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
-}
+  display:none;
 
-.categories button:hover {
-  background: #2980b9;
-}
+  position:fixed;
 
-/* ================= CHECKOUT SUCCESS MODAL ================= */
+  top:0;
+  left:0;
 
-.success-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
+
+  justify-content:center;
+  align-items:center;
+
   background: rgba(0,0,0,0.4);
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
+
+  backdrop-filter: blur(8px);
+
+  z-index:999;
 }
 
-.success-content {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  animation: pop 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+.success-content{
+
+  background: rgba(255,255,255,0.2);
+
+  backdrop-filter: blur(20px);
+
+  border:1px solid rgba(255,255,255,0.3);
+
+  padding:35px;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  color:white;
+
+  animation: popup .3s ease;
 }
 
-.success-content button {
-  margin: 10px;
-  background: #3498db;
+.success-content button{
+
+  margin:10px;
 }
 
-.success-content button:last-child {
-  background: #e74c3c;
-}
+/* ================= TOAST ================= */
 
-/* Animation */
-@keyframes pop {
-  from {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-.toast {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #2ecc71;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  opacity: 0;
+.toast{
+
+  position:fixed;
+
+  top:25px;
+  right:25px;
+
+  background: rgba(0,0,0,0.7);
+
+  backdrop-filter: blur(10px);
+
+  color:white;
+
+  padding:12px 18px;
+
+  border-radius:10px;
+
+  opacity:0;
+
   transform: translateY(-20px);
-  transition: all 0.3s ease;
-  z-index: 9999;
+
+  transition:0.3s;
 }
 
-.toast.error {
-  background: #e74c3c;
-}
+.toast.show{
 
-.toast.show {
-  opacity: 1;
+  opacity:1;
+
   transform: translateY(0);
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes popup{
+
+  from{
+
+    transform:scale(.7);
+
+    opacity:0;
+
+  }
+
+  to{
+
+    transform:scale(1);
+
+    opacity:1;
+
+  }
+
+}
+
+/* ================= GLASS BUTTON STYLE (IMPROVED) ================= */
+
+button,
+.nav-center button,
+.history-right button,
+.order-card button,
+.back-btn,
+.categories button {
+
+  position: relative;
+
+  background: rgba(255,255,255,0.12) !important;
+
+  border: 1px solid rgba(255,255,255,0.25) !important;
+
+  backdrop-filter: blur(12px);
+
+  color: white !important;
+
+  padding: 10px 18px;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+
+  overflow: hidden;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ================= GLASS RAINBOW LIGHT EFFECT ================= */
+
+button::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+
+  transition: all 0.6s ease;
+
+}
+
+/* ================= HOVER EFFECT ================= */
+
+button:hover,
+.nav-center button:hover,
+.history-right button:hover,
+.order-card button:hover,
+.back-btn:hover,
+.categories button:hover {
+
+  background: rgba(255,255,255,0.3) !important;
+
+  transform: translateY(-4px) scale(1.06);
+
+  border: 1px solid rgba(255,255,255,0.7) !important;
+
+  box-shadow:
+    0 0 15px rgba(0, 200, 255, 0.6),
+    0 0 25px rgba(255, 0, 255, 0.4);
+}
+
+/* Animate the light sweep */
+button:hover::before {
+
+  left: 100%;
+
+}
+
+
+
+/* ================= FLOATING PARTICLE BACKGROUND ================= */
+
+/* ================= FLOATING + MOUSE REACTIVE PARTICLES ================= */
+
+/* ================= FLOATING + MOUSE REACTIVE PARTICLES ================= */
+
+.particles{
+
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  pointer-events:none;
+  z-index:-1;
+
+  overflow:hidden;
+}
+
+/* Particle */
+
+.particles span{
+
+  position:absolute;
+
+  width:4px;
+  height:4px;
+
+  background:rgba(0,255,255,0.8);
+
+  border-radius:50%;
+
+  box-shadow:0 0 8px rgba(0,255,255,0.8);
+
+  animation: floatUp 20s linear infinite;
+}
+
+/* Floating animation */
+
+@keyframes floatUp{
+
+  0%{
+    transform: translateY(100vh) translateX(0);
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  100%{
+    transform: translateY(-20vh) translateX(40px);
+    opacity:0;
+  }
 }
