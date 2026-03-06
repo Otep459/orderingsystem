@@ -17,7 +17,7 @@ const products = [
   { name: "Bubble Tea", price: 3, image: "images/bubble-tea.jpg", category: "Drinks" },
 
   { name: "Cake", price: 6, image: "images/cake.jpg", category: "Dessert" },
-  { name: "Ice Cream", price: 4, image: "images/icecream.png", category: "Dessert" },
+  { name: "Ice Cream", price: 4, image: "images/icecream.jpg", category: "Dessert" },
   { name: "Maja Blanca", price: 6, image: "images/maja.jpg", category: "Dessert" },
   { name: "Lecheflan", price: 4, image: "images/lecheflan.jpg", category: "Dessert" },
   { name: "Halo-Halo", price: 6, image: "images/halo-halo.jpg", category: "Dessert" },
